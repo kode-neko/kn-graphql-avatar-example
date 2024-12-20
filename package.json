@@ -1,0 +1,40 @@
+{
+  "name": "@kodeneko/kn-graphql-avatar-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "docker": "docker-compose --env-file ./.env.dev up --detach",
+    "docker:down": "docker-compose down",
+    "build": "npx tsc --watch",
+    "start": "dotenvx run -f ./.env.dev -- node ./public/index.js",
+    "dev": "dotenvx run -f ./.env.dev -- node --watch ./public/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kode-neko/kn-graphql-avatar-example.git"
+  },
+  "author": "kodeneko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kode-neko/kn-graphql-avatar-example/issues"
+  },
+  "homepage": "https://github.com/kode-neko/kn-graphql-avatar-example#readme",
+  "description": "",
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
+  },
+  "dependencies": {
+    "@dotenvx/dotenvx": "^1.31.1",
+    "graphql": "^16.10.0",
+    "helmet": "^8.0.0",
+    "hpp": "^0.2.3",
+    "mongodb": "^6.12.0",
+    "rate-limiter-flexible": "^5.0.4",
+    "zod": "^3.24.1"
+  }
+}

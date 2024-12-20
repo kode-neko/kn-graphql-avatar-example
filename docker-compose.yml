@@ -1,0 +1,25 @@
+name: graphql-avatar
+
+services:
+  
+  mongo:
+    image: mongo:latest
+    restart: always
+    ports: 
+      - ${DB_PORT}:27017
+    volumes:
+      - db-graphql-avatar-nosql:/data/db
+      # - ./scripts/mongo:/docker-entrypoint-initdb.d
+    networks:
+      - net-graphql-avatar
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: ${PASS_ROOT}
+      MONGO_INITDB_DATABASE: ${DB}
+
+networks:
+  net-graphql-avatar:
+    driver: bridge
+
+volumes:
+  db-graphql-avatar-nosql:
