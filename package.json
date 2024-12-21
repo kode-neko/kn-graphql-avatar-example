@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "docker": "docker-compose --env-file ./.env.dev up --detach",
+    "docker:up": "docker-compose --env-file ./.env.dev up --detach",
     "docker:down": "docker-compose down",
     "build": "npx tsc --watch",
     "start": "dotenvx run -f ./.env.dev -- node ./public/index.js",

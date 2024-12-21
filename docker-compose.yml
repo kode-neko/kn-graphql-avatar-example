@@ -9,13 +9,20 @@ services:
       - ${DB_PORT}:27017
     volumes:
       - db-graphql-avatar-nosql:/data/db
-      # - ./scripts/mongo:/docker-entrypoint-initdb.d
+      - ./scripts/mongo:/docker-entrypoint-initdb.d
     networks:
       - net-graphql-avatar
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: ${PASS_ROOT}
       MONGO_INITDB_DATABASE: ${DB}
+      DB: ${DB}
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      USER: ${USER}
+      PASS: ${PASS}
+      USER_ADMIN: ${USER_ADMIN}
+      PASS_ADMIN: ${PASS_ADMIN}
 
 networks:
   net-graphql-avatar:
