@@ -1,15 +1,15 @@
-import { Category } from "./Category";
+import { CustomElement } from "./Element";
 
 interface Avatar {
   id?: string;
   name: string;
 
   // What Category?
-  hair: Category;
-  hat: Category;
-  eyes: Category;
-  mouth: Category;
-  clothes: Category;
+  hat?: CustomElement;
+  hair?: CustomElement;
+  eyes?: CustomElement;
+  mouth?: CustomElement;
+  clothes?: CustomElement;
 }
 
 export {

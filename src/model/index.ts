@@ -5,7 +5,8 @@ export {
   Category
 } from './Category'
 export {
-  Element
+  Element,
+  CustomElement
 } from './Element'
 export {
   User,
