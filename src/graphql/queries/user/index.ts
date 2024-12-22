@@ -1,1 +1,0 @@
-export {QueryUser} from './QueryUser'

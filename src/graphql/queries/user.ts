@@ -1,13 +1,15 @@
-import { GraphQLID, GraphQLNonNull } from "graphql"
+import {
+  GraphQLID,
+  GraphQLNonNull
+} from "graphql"
 import { UserAppType } from "../types"
 
-const QueryUser = {
+const user = {
   type: UserAppType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
   resolve: (_, { id }) => {
     return {} // User
   }
 }
-    
 
-export {QueryUser}
+export {user}
