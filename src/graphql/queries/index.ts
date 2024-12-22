@@ -1,3 +1,5 @@
-export {QueryCategory} from './QueryCategory'
-export {QueryCategoryList} from './QueryCategoryList'
-export {QueryUser} from './QueryUser'
+export {
+  QueryCategory,
+  QueryCategoryList
+} from './category'
+export {QueryUser} from './user'
