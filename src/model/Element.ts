@@ -1,13 +1,12 @@
-import { Category } from "./Category";
-
 interface Element {
   id?: string;
   name: string;
   pic: string;
 
-  category?: Category;
+  categoryName?: string;
 }
 interface CustomElement {
+  id?: string;
   selected?: Element,
   color: string
 }
