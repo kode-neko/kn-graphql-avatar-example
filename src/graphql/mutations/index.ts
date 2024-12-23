@@ -1,4 +1,5 @@
-export {
+import { GraphQLObjectType } from 'graphql'
+import {
   createAvatar,
   updateAvatar,
   deleteAvatar,
@@ -6,19 +7,51 @@ export {
   updateElementAvatar,
   deleteElementAvatar
 } from './avatar'
-export {
+import {
   createCategory,
   addElementToCategory,
   updateCategory,
   deleteCategory
 } from './category'
-export {
+import {
   createElement,
   updateElement,
   deleteElement
 } from './element'
-export {
+import {
   createUser,
   updateUser,
   deleteUser
 } from './user'
+
+const MutationType = new GraphQLObjectType({
+  name: 'Mutation',
+  fields: {
+
+    // Category
+    createCategory,
+    addElementToCategory,
+    updateCategory,
+    deleteCategory,
+
+    // Element
+    createElement,
+    updateElement,
+    deleteElement,
+
+    // Avatar
+    createAvatar,
+    updateAvatar,
+    deleteAvatar,
+    addElementAvatar,
+    updateElementAvatar,
+    deleteElementAvatar,
+
+    // User
+    createUser,
+    updateUser,
+    deleteUser
+  }
+});
+
+export default MutationType;
