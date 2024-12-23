@@ -68,11 +68,11 @@ try {
       _id: new ObjectId('676932e35bb82026cdef410b'),
       name: 'my avatar',
 
-      hat: { name: 'bonet', color: 'red' },
-      hair: { name: 'ponytail', color: 'black' },
-      eyes: { name: 'chinesse', color: 'green' },
-      mouth: { name: 'smile', color: 'pink' },
-      clothes: { name: 'shirt', color: 'purple' }
+      hat: { element: 'bonet', color: 'red' },
+      hair: { element: 'ponytail', color: 'black' },
+      eyes: { element: 'chinesse', color: 'green' },
+      mouth: { element: 'smile', color: 'pink' },
+      clothes: { element: 'shirt', color: 'purple' }
     }
   ]);
 
@@ -84,7 +84,7 @@ try {
       pass: '',
       salt: '',
 
-      avatar: [new ObjectId('676932e35bb82026cdef410b')]
+      avatarList: [new ObjectId('676932e35bb82026cdef410b')]
     }
   ]);
 
