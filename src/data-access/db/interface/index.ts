@@ -1,4 +1,3 @@
-export {default as IAvatarDB} from './IAvatarDB'
-export {default as ICategoryDB} from './ICategoryDB'
-export {default as IElementDB} from './IElementDB'
-export {default as IUserDB} from './IUserDB'
+export {default as IAvatarDb} from './IAvatarDb'
+export {default as ICategoryDb} from './ICategoryDb'
+export {default as IUserDb} from './IUserDb'
