@@ -1,4 +1,3 @@
-export {default as IAvatarDB} from './IAvatarDB'
-export {default as ICategoryDB} from './ICategoryDB'
-export {default as IElementDB} from './IElementDB'
-export {default as IUserDB} from './IUserDB'
+export {default as IAvatarDbMongo} from './IAvatarDbMongo'
+export {default as ICategoryDbMongo} from './ICategoryDbMongo'
+export {default as IUserDbMongo} from './IUserDbMongo'
