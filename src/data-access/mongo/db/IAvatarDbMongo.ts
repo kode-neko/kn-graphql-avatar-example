@@ -1,5 +1,5 @@
 import { Collection, Db, MongoClient, ObjectId } from "mongodb";
-import { Avatar } from "../../../model";
+import { Avatar, CustomElement } from "../../../model";
 import { NotFoundDB } from "../../db/error";
 import { IAvatarDb } from "../../db/interface";
 import { getConnMongo } from "../utils";
@@ -62,6 +62,16 @@ class IAvatarDbMongo implements IAvatarDb {
       .then(({deletedCount}) => {
         if (deletedCount === 0) throw new NotFoundDB('Avatar')
     })
+  }
+
+  createCustomElement(idAvatar: string, element: CustomElement): (Promise<Avatar> | NotFoundDB) {
+    throw new Error("Method not implemented.");
+  }
+  updateCustomElement(idAvatar: string, element: CustomElement): (Promise<void> | NotFoundDB) {
+    throw new Error("Method not implemented.");
+  }
+  deleteCustomElement(idAvatar: string, nameCustomElement: string): (Promise<void> | NotFoundDB) {
+    throw new Error("Method not implemented.");
   }
 
 } 

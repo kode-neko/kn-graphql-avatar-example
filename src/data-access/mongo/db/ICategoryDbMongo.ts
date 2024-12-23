@@ -3,7 +3,7 @@ import { NotFoundDB } from "../../db/error";
 import { ICategoryDb } from "../../db/interface";
 import { CategoryMongo } from "../interface";
 import { getConnMongo } from "../utils";
-import { Category } from "../../../model";
+import { Category, Element } from "../../../model";
 import { parseCategoryToMongo, parseMongoToCategory } from "../parsers";
 
 class ICategoryDbMongo implements ICategoryDb {
@@ -61,6 +61,16 @@ class ICategoryDbMongo implements ICategoryDb {
       .then(({deletedCount}) => {
         if (deletedCount === 0) throw new NotFoundDB('Category')
     })
+  }
+
+  createElement(idCategory: string, element: Element): (Promise<Category> | NotFoundDB) {
+    throw new Error("Method not implemented.");
+  }
+  updateElement(idCategory: string, element: Element): (Promise<void> | NotFoundDB) {
+    throw new Error("Method not implemented.");
+  }
+  deleteElement(idCategory: string, nameElement: string): (Promise<void> | NotFoundDB) {
+    throw new Error("Method not implemented.");
   }
 
 } 
