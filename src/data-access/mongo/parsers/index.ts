@@ -5,6 +5,8 @@ export {
   parseAvatarToMongo
 } from './avatar'
 export {
+  parseMongoToElement,
+  parseElementToMongo,
   parseMongoToCategory,
   parseCategoryToMongo
 } from './category'

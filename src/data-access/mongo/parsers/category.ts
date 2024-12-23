@@ -35,6 +35,8 @@ function parseCategoryToMongo(category: Category): CategoryMongo {
 }
 
 export {
+  parseMongoToElement,
+  parseElementToMongo,
   parseMongoToCategory,
   parseCategoryToMongo
 }
