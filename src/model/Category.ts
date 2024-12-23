@@ -1,3 +1,5 @@
+import { Element } from "./Element";
+
 interface Category {
   id?: string;
   name: string;
