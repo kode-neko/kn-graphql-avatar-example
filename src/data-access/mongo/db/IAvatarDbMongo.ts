@@ -4,8 +4,8 @@ import { NotFoundDB } from "../../db/error";
 import { IAvatarDb } from "../../db/interface";
 import { getConnMongo } from "../utils";
 import { AvatarMongo } from "../interface";
-import { parseMongoToAvatar } from "../parsers";
-import { parseAvatarToMongo } from "../parsers/avatar";
+import { parseElementToMongo, parseMongoToAvatar } from "../parsers";
+import { parseAvatarToMongo, parseCustomElementToMongo } from "../parsers/avatar";
 
 class IAvatarDbMongo implements IAvatarDb {
 
@@ -64,16 +64,28 @@ class IAvatarDbMongo implements IAvatarDb {
     })
   }
 
-  createCustomElement(idAvatar: string, element: CustomElement): (Promise<Avatar> | NotFoundDB) {
-    throw new Error("Method not implemented.");
-  }
-  updateCustomElement(idAvatar: string, element: CustomElement): (Promise<void> | NotFoundDB) {
-    throw new Error("Method not implemented.");
-  }
-  deleteCustomElement(idAvatar: string, nameCustomElement: string): (Promise<void> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+  updateCustomElement(idAvatar: string, nameCategory: string, customElement: CustomElement): (Promise<void> | NotFoundDB) {
+    const elementMongo = parseCustomElementToMongo(customElement);
+    throw this.avatarColl
+      .updateOne(
+        { _id: new ObjectId(idAvatar) },
+        { [nameCategory]: elementMongo }
+      )
+      .then(({ modifiedCount }) => {
+        if (modifiedCount === 0) throw new NotFoundDB('Avatar')
+      });
   }
 
+  deleteCustomElement(idAvatar: string, nameCategory: string): (Promise<void> | NotFoundDB) {
+    throw this.avatarColl
+      .updateOne(
+        { _id: new ObjectId(idAvatar) },
+        { $unset: { [nameCategory]: "" } }
+      )
+      .then(({ modifiedCount }) => {
+        if (modifiedCount === 0) throw new NotFoundDB('Avatar')
+      });
+  }
 } 
 
 export default IAvatarDbMongo;

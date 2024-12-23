@@ -3,9 +3,8 @@ import { NotFoundDB } from "../error";
 import IModelDb from "./IModelDb";
 
 interface IAvatarDB extends IModelDb<Avatar>{
-  createCustomElement(idAvatar: string, element: CustomElement): (Promise<Avatar> | NotFoundDB);
-  updateCustomElement(idAvatar: string, element: CustomElement): (Promise<void> | NotFoundDB);
-  deleteCustomElement(idAvatar: string, nameCustomElement: string): (Promise<void> | NotFoundDB);
+  updateCustomElement(idAvatar: string, nameCategory: string, customElement: CustomElement): (Promise<void> | NotFoundDB);
+  deleteCustomElement(idAvatar: string, nameCategory: string, ): (Promise<void> | NotFoundDB);
 }
 
 export default IAvatarDB;

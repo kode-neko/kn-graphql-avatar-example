@@ -4,7 +4,7 @@ import { ICategoryDb } from "../../db/interface";
 import { CategoryMongo } from "../interface";
 import { getConnMongo } from "../utils";
 import { Category, Element } from "../../../model";
-import { parseCategoryToMongo, parseMongoToCategory } from "../parsers";
+import { parseCategoryToMongo, parseElementToMongo, parseMongoToCategory } from "../parsers";
 
 class ICategoryDbMongo implements ICategoryDb {
 
@@ -47,6 +47,7 @@ class ICategoryDbMongo implements ICategoryDb {
       .then(({ insertedId: _id }) =>
         parseMongoToCategory({ ...mongo, _id }))
   }
+  
   update(obj: Category): (Promise<void> | NotFoundDB) {
     const { id, ...rest } = obj;
     return this.categoryColl
@@ -55,6 +56,7 @@ class ICategoryDbMongo implements ICategoryDb {
         if (modifiedCount === 0) throw new NotFoundDB('Category')
     })
   }
+
   delete(id: string): (Promise<void> | NotFoundDB) {
     return this.categoryColl
       .deleteOne({ _id: new ObjectId(id) })
@@ -64,13 +66,38 @@ class ICategoryDbMongo implements ICategoryDb {
   }
 
   createElement(idCategory: string, element: Element): (Promise<Category> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+    const elementMongo = parseElementToMongo(element);
+    throw this.categoryColl
+      .updateOne(
+        { _id: new ObjectId(idCategory) },
+        { $push: { elementList: elementMongo } }
+      )
+      .then(({modifiedCount}) => {
+        if(modifiedCount === 0) throw new NotFoundDB('Category')
+      })
   }
+
   updateElement(idCategory: string, element: Element): (Promise<void> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+    const elementMongo = parseElementToMongo(element);
+    throw this.categoryColl
+      .updateOne(
+        { _id: new ObjectId(idCategory), "elementList.name": element.name },
+        { $push: { elementList: elementMongo } }
+      )
+      .then(({modifiedCount}) => {
+        if(modifiedCount === 0) throw new NotFoundDB('Category')
+      })
   }
+
   deleteElement(idCategory: string, nameElement: string): (Promise<void> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+    throw this.categoryColl
+      .updateOne(
+        { _id: new ObjectId(idCategory) },
+        { $pull: { elementList: { name: nameElement} } }
+      )
+      .then(({modifiedCount}) => {
+        if(modifiedCount === 0) throw new NotFoundDB('Category')
+      })
   }
 
 } 
