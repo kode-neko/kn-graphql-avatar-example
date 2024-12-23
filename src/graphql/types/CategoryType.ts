@@ -5,6 +5,7 @@ import {
   GraphQLObjectType,
   GraphQLString
 } from "graphql";
+import { ElementType } from "./ElementType";
 
 const CategoryType = new GraphQLObjectType({
   name: 'Category',
