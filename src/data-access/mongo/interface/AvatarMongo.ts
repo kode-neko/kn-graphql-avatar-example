@@ -1,12 +1,13 @@
+import { ObjectId } from "mongodb";
 import { CategoryMongo } from "./CategoryMongo";
 
 interface CustomElementMongo {
-  name: string;
+  element: string;
   color: CategoryMongo['colors'][number];
 }
 
 interface AvatarMongo {
-  _id?: string;
+  _id?: ObjectId;
   name: string;
 
   hat: CustomElementMongo;
