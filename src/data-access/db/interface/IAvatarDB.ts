@@ -1,6 +1,6 @@
 import { Avatar } from "../../../model";
-import IModelDB from "./IModelDB";
+import IModelDb from "./IModelDb";
 
-type IAvatarDB = IModelDB<Avatar>;
+type IAvatarDB = IModelDb<Avatar>;
 
 export default IAvatarDB;

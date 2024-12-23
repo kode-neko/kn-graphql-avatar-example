@@ -1,6 +1,6 @@
 import { Category } from "../../../model";
-import IModelDB from "./IModelDB";
+import IModelDb from "./IModelDb";
 
-type ICategoryDB = IModelDB<Category>;
+type ICategoryDB = IModelDb<Category>;
 
 export default ICategoryDB;

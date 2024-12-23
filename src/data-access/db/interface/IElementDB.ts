@@ -1,6 +1,6 @@
 import { Element } from "../../../model";
-import IModelDB from "./IModelDB";
+import IModelDb from "./IModelDb";
 
-type IElementDB = IModelDB<Element>;
+type IElementDB = IModelDb<Element>;
 
 export default IElementDB;

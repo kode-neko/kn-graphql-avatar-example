@@ -1,6 +1,6 @@
 import { NotFoundDB } from "../error";
 
-interface IModelDB<T> {
+interface IModelDb<T> {
   read(id: string): (Promise<T> | NotFoundDB);
   readList(skip: string, limit: string): (Promise<T>[] | NotFoundDB);
   create(obj: T): (Promise<T> | NotFoundDB);
@@ -8,4 +8,4 @@ interface IModelDB<T> {
   delete(id: string): (Promise<boolean> | NotFoundDB);
 }
 
-export default IModelDB
+export default IModelDb

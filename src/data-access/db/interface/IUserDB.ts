@@ -1,6 +1,6 @@
 import { User } from "../../../model";
-import IModelDB from "./IModelDB";
+import IModelDb from "./IModelDb";
 
-type IUserDB = IModelDB<User>;
+type IUserDB = IModelDb<User>;
 
 export default IUserDB;
