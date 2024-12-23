@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import { User } from "../../../model";
 import { AvatarMongo, UserMongo } from "../interface";
 
-function parseMongoToUser(userMongo: UserMongo, avatarListMongo: AvatarMongo[]): User {
+function parseMongoToUser(userMongo: Omit<UserMongo, 'avatarList'>, avatarListMongo: AvatarMongo[]): User {
   return {
     id: userMongo._id?.toString(),
     userName: userMongo.userName,
