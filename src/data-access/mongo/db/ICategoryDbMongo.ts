@@ -1,13 +1,21 @@
-import { Category } from "../../../model";
+import { Collection, Db, MongoClient, ObjectId } from "mongodb";
 import { NotFoundDB } from "../../db/error";
-import { ICategoryDB } from "../../db/interface";
+import { ICategoryDb } from "../../db/interface";
+import { CategoryMongo } from "../interface";
+import { getConnMongo } from "../utils";
+import { Category } from "../../../model";
+import { parseCategoryToMongo, parseMongoToCategory } from "../parsers";
 
-class ICategoryDbMongo implements ICategoryDB {
+class ICategoryDbMongo implements ICategoryDb {
 
+  private client: MongoClient;
+  private db: Db;
+  private categoryColl: Collection<CategoryMongo>;
   private static _instance: ICategoryDbMongo;
 
   private constructor() {
-
+    [this.client, this.db] = getConnMongo();
+    this.categoryColl = this.db.collection('avatar');
   }
 
   public static getInstance(): ICategoryDbMongo {
@@ -17,19 +25,42 @@ class ICategoryDbMongo implements ICategoryDB {
   }
 
   read(id: string): NotFoundDB | Promise<Category> {
-    throw new Error("Method not implemented.");
+    return this.categoryColl
+      .findOne({ id: new ObjectId(id) })
+      .then(res => {
+        if (!res) throw new NotFoundDB('Category')
+        return parseMongoToCategory(res)
+    })
   }
-  readList(skip: string, limit: string): NotFoundDB | Promise<Category>[] {
-    throw new Error("Method not implemented.");
+
+  readList(skip: number, limit: number): NotFoundDB | Promise<Category[]> {
+    return this.categoryColl
+      .find({}, { skip, limit })
+      .toArray()
+      .then(list => list.map(parseMongoToCategory))
   }
+
   create(obj: Category): NotFoundDB | Promise<Category> {
-    throw new Error("Method not implemented.");
+    const mongo = parseCategoryToMongo(obj);
+    return this.categoryColl
+      .insertOne(mongo)
+      .then(({ insertedId: _id }) =>
+        parseMongoToCategory({ ...mongo, _id }))
   }
-  update(obj: Category): (Promise<boolean> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+  update(obj: Category): (Promise<void> | NotFoundDB) {
+    const { id, ...rest } = obj;
+    return this.categoryColl
+      .updateOne({ _id: new ObjectId(id) }, { ...rest })
+      .then(({modifiedCount}) => {
+        if (modifiedCount === 0) throw new NotFoundDB('Category')
+    })
   }
-  delete(id: string): (Promise<boolean> | NotFoundDB) {
-    throw new Error("Method not implemented.");
+  delete(id: string): (Promise<void> | NotFoundDB) {
+    return this.categoryColl
+      .deleteOne({ _id: new ObjectId(id) })
+      .then(({deletedCount}) => {
+        if (deletedCount === 0) throw new NotFoundDB('Category')
+    })
   }
 
 } 
