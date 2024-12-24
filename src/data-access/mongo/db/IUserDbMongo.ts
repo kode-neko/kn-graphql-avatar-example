@@ -20,7 +20,7 @@ class IUserDbMongo implements IUserDb {
 
   public static getInstance(): IUserDbMongo {
     if (IUserDbMongo._instance)
-      this._instance = new IUserDbMongo();
+      IUserDbMongo._instance = new IUserDbMongo();
     return IUserDbMongo._instance;
   }
 
@@ -36,7 +36,7 @@ class IUserDbMongo implements IUserDb {
   read(id: string): NotFoundDB | Promise<User> {
     return this.userColl
       .aggregate([
-        {$match: {id: new ObjectId(id)}},
+        {$match: {_id: new ObjectId(id)}},
         this.lookupAvatar
       ])
       .toArray()

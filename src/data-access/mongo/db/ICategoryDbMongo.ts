@@ -11,7 +11,7 @@ class ICategoryDbMongo implements ICategoryDb {
   private client: MongoClient;
   private db: Db;
   private categoryColl: Collection<CategoryMongo>;
-  static _instance: ICategoryDbMongo;
+  private static _instance: ICategoryDbMongo;
 
   private constructor() {
     [this.client, this.db] = getConnMongo();

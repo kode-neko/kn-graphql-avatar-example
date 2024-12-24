@@ -20,14 +20,14 @@ class IAvatarDbMongo implements IAvatarDb {
   }
 
   public static getInstance(): IAvatarDbMongo {
-    if (IAvatarDbMongo._instance)
-      this._instance = new IAvatarDbMongo();
+    if (!IAvatarDbMongo._instance)
+      IAvatarDbMongo._instance = new IAvatarDbMongo();
     return IAvatarDbMongo._instance;
   }
 
   read(id: string): NotFoundDB | Promise<Avatar> {
     return this.avatarColl
-      .findOne({ id: new ObjectId(id) })
+      .findOne({ _id: new ObjectId(id) })
       .then(res => {
         if (!res) throw new NotFoundDB('Avatar')
         return parseMongoToAvatar(res)
