@@ -28,6 +28,7 @@ class ICategoryDbMongo implements ICategoryDb {
     return this.categoryColl
       .findOne({ _id: new ObjectId(id) })
       .then(res => {
+        if (!res) throw new NotFoundDB('Category')
         return parseMongoToCategory(res)
     })
   }
