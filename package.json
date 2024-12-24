@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "docker": "docker-compose --env-file ./.env.dev up --detach",
+    "docker:up": "docker-compose --env-file ./.env.dev up --detach",
     "docker:down": "docker-compose down",
     "build": "npx tsc --watch",
     "start": "dotenvx run -f ./.env.dev -- node ./public/index.js",
@@ -31,6 +31,7 @@
   "dependencies": {
     "@dotenvx/dotenvx": "^1.31.1",
     "graphql": "^16.10.0",
+    "graphql-tag": "^2.12.6",
     "helmet": "^8.0.0",
     "hpp": "^0.2.3",
     "mongodb": "^6.12.0",
