@@ -4,6 +4,7 @@ import {
   GraphQLNonNull,
   GraphQLString
 } from "graphql";
+import { ElementInputType } from "./ElementInputType";
 
 const CategoryInputType = new GraphQLInputObjectType({
   name: 'CategoryInput',

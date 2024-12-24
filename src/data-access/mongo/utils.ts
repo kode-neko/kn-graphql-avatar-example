@@ -12,7 +12,7 @@ const {
   USER,
   PASS
 } = process.env;
-const urlDb = `mongodb://${USER}:${PASS}@${DB_HOST}:${DB_PORT}/${DB}?authSource=${DB}`;
+const urlDb = `mongodb://${USER}:${PASS}@${DB_HOST}:${DB_PORT}/${DB}?authSource=admin`;
 
 let client: MongoClient;
 let db: Db;

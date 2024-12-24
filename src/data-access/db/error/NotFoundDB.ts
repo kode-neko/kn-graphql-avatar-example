@@ -1,7 +1,7 @@
 class NotFoundDB extends Error {
 
   constructor(str: string) {
-    super(str);
+    super(`Not found document ${str}`);
   }
 
 }

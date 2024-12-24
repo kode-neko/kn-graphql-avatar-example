@@ -11,24 +11,23 @@ class ICategoryDbMongo implements ICategoryDb {
   private client: MongoClient;
   private db: Db;
   private categoryColl: Collection<CategoryMongo>;
-  private static _instance: ICategoryDbMongo;
+  static _instance: ICategoryDbMongo;
 
   private constructor() {
     [this.client, this.db] = getConnMongo();
-    this.categoryColl = this.db.collection('avatar');
+    this.categoryColl = this.db.collection('category');
   }
 
   public static getInstance(): ICategoryDbMongo {
-    if (ICategoryDbMongo._instance)
-      this._instance = new ICategoryDbMongo();
+    if (!ICategoryDbMongo._instance)
+      ICategoryDbMongo._instance = new ICategoryDbMongo();
     return ICategoryDbMongo._instance;
   }
 
   read(id: string): NotFoundDB | Promise<Category> {
     return this.categoryColl
-      .findOne({ id: new ObjectId(id) })
+      .findOne({ _id: new ObjectId(id) })
       .then(res => {
-        if (!res) throw new NotFoundDB('Category')
         return parseMongoToCategory(res)
     })
   }

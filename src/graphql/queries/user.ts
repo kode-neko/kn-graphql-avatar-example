@@ -7,7 +7,7 @@ import { UserAppType } from "../types"
 const user = {
   type: UserAppType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-  resolve: (_, { id }) => {
+  resolve: () => {
     return {} // User
   }
 }
