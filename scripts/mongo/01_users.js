@@ -1,16 +1,13 @@
 const {
-  DB,
   DB_HOST,
-  DB_PORT,
-  MONGO_INITDB_ROOT_USERNAME,
-  MONGO_INITDB_ROOT_PASSWORD,
+  PASS_ROOT,
   USER_ADMIN,
   PASS_ADMIN,
   USER,
   PASS
 } = process.env;
 
-const conn = Mongo(`mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@${DB_HOST}:27017`);
+const conn = Mongo(`mongodb://root:${PASS_ROOT}@${DB_HOST}:27017`);
 const db = conn.getDB('admin');
 
 try {
@@ -22,7 +19,7 @@ try {
     ],
     comment: 'The admin for "gql-avatar" database'
   });
-  
+
   db.createUser({
     user: USER,
     pwd: PASS,
@@ -31,7 +28,7 @@ try {
     ],
     comment: 'The user for "gql-avatar" database CRUD ops'
   });
-  
+
   console.log(`Users added succesfully 😎`);
 
 } catch (err) {

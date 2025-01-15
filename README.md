@@ -1,26 +1,45 @@
 # KN GraphQL Avatar Example
 
+---
+
 - [KN GraphQL Avatar Example](#kn-graphql-avatar-example)
-  - [1. Description](#1-description)
-  - [2. Specs](#2-specs)
-  - [3. Instalation](#3-instalation)
-  - [4. Testing](#4-testing)
-  - [5. Architecture](#5-architecture)
-  - [6. Future Features](#6-future-features)
-  - [7. Contributions](#7-contributions)
+  - [🗒️ 1. Description](#️-1-description)
+  - [🛠️ 2. Technologies](#️-2-technologies)
+  - [⚗️ 3. Testing](#️-3-testing)
+  - [🖥️ 4. Deploy](#️-4-deploy)
+  - [🗺️ 5. Schema](#️-5-schema)
+  - [🚀 6. Future Features](#-6-future-features)
+  - [🤝 7. Contributions](#-7-contributions)
 
-## 1. Description
+---
 
-Hi! Welcome to my GraphQL example. This app consist on an small back to obtain and build avatars. Each user can have a listof the and customize theirs head, hair, eyes, mouth and clothes. The porpouse is learn how to implement in Node.js a GraphQL service. 
+## 🗒️ 1. Description
 
-## 2. Specs
+Hi! Welcome to my GraphQL example 😀 This app consist on an small back to obtain and build avatars 🙍‍♀️ Each user can have a list of the and customize theirs head, hair, eyes, mouth and clothes. The porpouse is learn how to implement in Node.js a GraphQL service 🕸️🖥️
 
-- node app
-- graphql official lib
-- mongodb official lib
-- docker-compose for deploying db
+## 🛠️ 2. Technologies
 
-## 3. Instalation
+- Node.js
+- [GraphQL official Node.js lib](https://www.npmjs.com/package/graphql)
+- [MongoDb official Node.js lib](https://www.npmjs.com/package/mongodb)
+- Docker
+
+## ⚗️ 3. Testing
+
+The ```./src/index.ts``` is the entrypoint. You could find a query source where you can modify for testing porpouses. At this moment is the following code. Modify it as your convenience.
+
+```typescript
+const source = gql`
+  query {
+    category(id: "6766a296dc3bc9c115bc5532") {
+      name
+      colors
+    }
+  }
+`;
+```
+
+## 🖥️ 4. Deploy
 
 Firstly, don't forget create & fill ```.env.dev```
 
@@ -59,37 +78,22 @@ npm run build
 npm run dev
 ```
 
-## 4. Testing
-
-The ```./src/index.ts``` is the entrypoint. You could find a query source where you can modify for testing porpouses. At this moment is the following code. Modify it as your convenience.
-
-```typescript
-const source = gql`
-  query {
-    category(id: "6766a296dc3bc9c115bc5532") {
-      name
-      colors
-    }
-  }
-`;
-```
-
-## 5. Architecture
+## 🗺️ 5. Schema
 
 The UML diagram is the following
 
-img
+[img]
 
 The app is organize in this way
 
-img
+[img]
 
-If you notice, there is a interface to access a data sotare systems. Anythins such us monog, sql or old school text file system, they must be implement the interface. That's a good software 
+If you notice, there is a interface to access a data sotare systems. Anything such as mongo, sql or old school text file system they must be implement the interface. That's a good software practice 😌
 
-## 6. Future Features
+## 🚀 6. Future Features
 
 The intention is include some browser client for queriying and mutating. I have been taking a look to (https://github.com/graphql/graphiql/?tab=readme-ov-file)[graphiql] lib 
 
-## 7. Contributions
+## 🤝 7. Contributions
 
-Everyone welcome! I have never taken part in colab projects, so I don't know how to organize a colab system. At the begining, contact me and I could bring you permissions on a branch. When the improvement is finished we could merge into dev or create a new version. However, if your intention is using the project as a base for new one, I will apreciate a mention 
+Welcome to anyone who want to improve this project 👍 I have never worked in collabs projects, but we can stablish some rules 📐 If you are interested contact me, introduce the changes in a new branch and finally we decide to included or not. On the other hand, if you make a fork for personal porpouses, contact me to show the link of that project 😀
