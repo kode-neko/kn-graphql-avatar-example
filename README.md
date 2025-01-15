@@ -92,7 +92,7 @@ If you notice, there is a interface to access a data sotare systems. Anything su
 
 ## 🚀 6. Future Features
 
-The intention is include some browser client for queriying and mutating. I have been taking a look to (https://github.com/graphql/graphiql/?tab=readme-ov-file)[graphiql] lib 
+The intention is include some browser client for queriying and mutating. I have been taking a look to [graphiql](https://github.com/graphql/graphiql/?tab=readme-ov-file) lib 
 
 ## 🤝 7. Contributions
 
